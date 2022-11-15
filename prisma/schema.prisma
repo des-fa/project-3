@@ -13,9 +13,9 @@ datasource db {
 model User {
   id           Int       @id @default(autoincrement())
   email        String    @unique
-  fullName     String    @unique
+  fullName     String
   passwordHash String
-  picture      String
+  avatar       String
   followedBy   Follows[] @relation("following")
   following    Follows[] @relation("follower")
   profile      Profile?
