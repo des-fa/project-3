@@ -17,4 +17,11 @@ router.post('/api/my/profile', authenticateUser('json'), (await import('./api/my
 router.get('/api/my/profile', authenticateUser('json'), (await import('./api/my/profile/show.js')).default)
 router.put('/api/my/profile', authenticateUser('json'), (await import('./api/my/profile/update.js')).default)
 
+// API | MY POSTS | AUTH REQUIRED
+router.post('/api/my/posts', authenticateUser('json'), (await import('./api/my/posts/create.js')).default)
+router.get('/api/my/posts', authenticateUser('json'), (await import('./api/my/posts/index.js')).default)
+router.get('/api/my/posts/:id', authenticateUser('json'), (await import('./api/my/posts/show.js')).default)
+router.put('/api/my/posts/:id', authenticateUser('json'), (await import('./api/my/posts/update.js')).default)
+router.delete('/api/my/posts/:id', authenticateUser('json'), (await import('./api/my/posts/destroy.js')).default)
+
 export default router

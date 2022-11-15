@@ -44,7 +44,7 @@ model Profile {
 
 model Post {
   id        Int      @id @default(autoincrement())
-  createdAt DateTime @default(now()) @db.Date
+  createdAt DateTime @default(now())
   content   String
   image     String?
   user      User?    @relation(fields: [userId], references: [id])
