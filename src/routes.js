@@ -24,4 +24,11 @@ router.get('/api/my/posts/:id', authenticateUser('json'), (await import('./api/m
 router.put('/api/my/posts/:id', authenticateUser('json'), (await import('./api/my/posts/update.js')).default)
 router.delete('/api/my/posts/:id', authenticateUser('json'), (await import('./api/my/posts/destroy.js')).default)
 
+// API | MY EXPERIENCE | AUTH REQUIRED
+router.post('/api/my/experiences', authenticateUser('json'), (await import('./api/my/experiences/create.js')).default)
+// router.get('/api/my/experiences', authenticateUser('json'), (await import('./api/my/experiences/index.js')).default)
+// router.get('/api/my/experiences/:id', authenticateUser('json'), (await import('./api/my/experiences/show.js')).default)
+// router.put('/api/my/experiences/:id', authenticateUser('json'), (await import('./api/my/experiences/update.js')).default)
+// router.delete('/api/my/experiences/:id', authenticateUser('json'), (await import('./api/my/experiences/2destroy.js')).default)
+
 export default router

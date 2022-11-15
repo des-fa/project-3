@@ -11,15 +11,17 @@ datasource db {
 }
 
 model User {
-  id           Int       @id @default(autoincrement())
-  email        String    @unique
+  id           Int          @id @default(autoincrement())
+  email        String       @unique
   fullName     String
   passwordHash String
   avatar       String
-  followedBy   Follows[] @relation("following")
-  following    Follows[] @relation("follower")
+  followedBy   Follows[]    @relation("following")
+  following    Follows[]    @relation("follower")
   profile      Profile?
   posts        Post[]
+  experiences  Experience[]
+  educations   Education[]
 }
 
 model Follows {
@@ -32,14 +34,12 @@ model Follows {
 }
 
 model Profile {
-  id               Int          @id @default(autoincrement())
+  id               Int    @id @default(autoincrement())
   currentJob       String
   highestEducation String
   about            String
-  user             User         @relation(fields: [userId], references: [id])
-  userId           Int          @unique
-  experiences      Experience[]
-  educations       Education[]
+  user             User   @relation(fields: [userId], references: [id])
+  userId           Int    @unique
 }
 
 model Post {
@@ -52,24 +52,24 @@ model Post {
 }
 
 model Experience {
-  id          Int      @id @default(autoincrement())
+  id          Int    @id @default(autoincrement())
   job         String
   company     String
   startYear   Int
   endYear     Int?
   description String
-  Profile     Profile? @relation(fields: [profileId], references: [id])
-  profileId   Int?
+  user        User?  @relation(fields: [userId], references: [id])
+  userId      Int?
 }
 
 model Education {
-  id            Int      @id @default(autoincrement())
+  id            Int    @id @default(autoincrement())
   school        String
   qualification String
   startYear     Int
   endYear       Int?
-  Profile       Profile? @relation(fields: [profileId], references: [id])
-  profileId     Int?
+  user          User?  @relation(fields: [userId], references: [id])
+  userId        Int?
 }
 
 // model Message {
