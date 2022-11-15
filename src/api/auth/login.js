@@ -1,7 +1,7 @@
 import yup from 'yup'
 
-import handleErrors from '../controllers/_helpers/handle-errors.js'
-import passport from '../_middlewares/passport.js'
+import handleErrors from '../../controllers/_helpers/handle-errors.js'
+import passport from '../../_middlewares/passport.js'
 
 const loginSchema = yup.object({
   email: yup.string().email().required(),
@@ -20,7 +20,7 @@ const authenticate = (req, res, next) => {
   })(req, res, next)
 }
 
-const controllersApiAuthLogin = async (req, res, next) => {
+const ApiAuthLogin = async (req, res, next) => {
   try {
     const { body } = req
     await loginSchema.validate(body, { abortEarly: false, stripUnknown: true })
@@ -30,4 +30,4 @@ const controllersApiAuthLogin = async (req, res, next) => {
   }
 }
 
-export default controllersApiAuthLogin
+export default ApiAuthLogin

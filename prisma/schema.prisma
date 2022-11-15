@@ -33,9 +33,9 @@ model Follows {
 
 model Profile {
   id               Int          @id @default(autoincrement())
-  about            String
   currentJob       String
   highestEducation String
+  about            String
   user             User         @relation(fields: [userId], references: [id])
   userId           Int          @unique
   experiences      Experience[]

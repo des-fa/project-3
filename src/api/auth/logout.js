@@ -1,6 +1,6 @@
-import handleErrors from '../controllers/_helpers/handle-errors.js'
+import handleErrors from '../../controllers/_helpers/handle-errors.js'
 
-const controllersApiAuth = async (req, res) => {
+const ApiAuth = async (req, res) => {
   try {
     await req.session.destroy()
 
@@ -10,4 +10,4 @@ const controllersApiAuth = async (req, res) => {
   }
 }
 
-export default controllersApiAuth
+export default ApiAuth
