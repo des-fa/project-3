@@ -16,14 +16,57 @@ model User {
   fullName     String   @unique
   passwordHash String
   picture      String
+  followedBy   User[]   @relation("UserFollows")
+  following    User[]   @relation("UserFollows")
   profile      Profile?
+  posts        Post[]
 }
 
 model Profile {
-  id               Int    @id @default(autoincrement())
+  id               Int          @id @default(autoincrement())
   about            String
   currentJob       String
   highestEducation String
-  user             User   @relation(fields: [userId], references: [id])
-  userId           Int    @unique
+  user             User         @relation(fields: [userId], references: [id])
+  userId           Int          @unique
+  experiences      Experience[]
+  educations       Education[]
 }
+
+model Post {
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now()) @db.Date
+  content   String
+  image     String?
+  user      User?    @relation(fields: [userId], references: [id])
+  userId    Int?
+}
+
+model Experience {
+  id          Int      @id @default(autoincrement())
+  job         String
+  company     String
+  startYear   Int
+  endYear     Int?
+  description String
+  Profile     Profile? @relation(fields: [profileId], references: [id])
+  profileId   Int?
+}
+
+model Education {
+  id            Int      @id @default(autoincrement())
+  school        String
+  qualification String
+  startYear     Int
+  endYear       Int?
+  Profile       Profile? @relation(fields: [profileId], references: [id])
+  profileId     Int?
+}
+
+// model Message {
+
+// }
+
+// model Notification {
+
+// }
