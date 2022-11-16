@@ -2,8 +2,9 @@ import yup from 'yup'
 
 import prisma from '../../../controllers/_helpers/prisma.js'
 import handleErrors from '../../../controllers/_helpers/handle-errors.js'
+import checkOwnership from './_check-ownership.js'
 
-const createSchema = yup.object({
+const updateSchema = yup.object({
   job: yup.string().required(),
   company: yup.string().required(),
   startYear: yup.number().integer().test('len', 'Must be exactly 4 numbers', (val) => val && val.toString().length === 4).required(),
@@ -16,25 +17,24 @@ const createSchema = yup.object({
   description: yup.string().required()
 })
 
-const ApiMyExperiencesCreate = async (req, res) => {
+const ApiMyExperiencesUpdate = async (req, res) => {
   try {
-    const { body, session: { user: { id: userId } } } = req
-    const verifiedData = await createSchema.validate(body, { abortEarly: false, stripUnknown: true })
+    const { params: { id }, body } = req
+    const verifiedData = await updateSchema.validate(body, { abortEarly: false, stripUnknown: true })
 
-    const newExperience = await prisma.experience.create({
+    const updatedExperience = await prisma.experience.update({
+      where: { id: Number(id) },
       data: {
-        ...verifiedData,
-        user: {
-          connect: {
-            id: userId
-          }
-        }
+        ...verifiedData
       }
     })
-    return res.status(201).json(newExperience)
+    return res.status(200).json(updatedExperience)
   } catch (err) {
     return handleErrors(res, err)
   }
 }
 
-export default ApiMyExperiencesCreate
+export default [
+  checkOwnership,
+  ApiMyExperiencesUpdate
+]

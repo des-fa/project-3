@@ -17,13 +17,13 @@ const ApiMyPostsUpdate = async (req, res) => {
 
     uploadFileAsync(verifiedData, req)
 
-    const dataToSave = {
-      content: verifiedData.content
-    }
+    // const dataToSave = {
+    //   content: verifiedData.content
+    // }
 
-    if (verifiedData.image) {
-      dataToSave.image = verifiedData.image
-    }
+    // if (verifiedData.image) {
+    //   dataToSave.image = verifiedData.image
+    // }
 
     const updatedPost = await prisma.post.update({
       where: { id: Number(id) },

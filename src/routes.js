@@ -26,9 +26,16 @@ router.delete('/api/my/posts/:id', authenticateUser('json'), (await import('./ap
 
 // API | MY EXPERIENCE | AUTH REQUIRED
 router.post('/api/my/experiences', authenticateUser('json'), (await import('./api/my/experiences/create.js')).default)
-// router.get('/api/my/experiences', authenticateUser('json'), (await import('./api/my/experiences/index.js')).default)
-// router.get('/api/my/experiences/:id', authenticateUser('json'), (await import('./api/my/experiences/show.js')).default)
-// router.put('/api/my/experiences/:id', authenticateUser('json'), (await import('./api/my/experiences/update.js')).default)
-// router.delete('/api/my/experiences/:id', authenticateUser('json'), (await import('./api/my/experiences/2destroy.js')).default)
+router.get('/api/my/experiences', authenticateUser('json'), (await import('./api/my/experiences/index.js')).default)
+router.get('/api/my/experiences/:id', authenticateUser('json'), (await import('./api/my/experiences/show.js')).default)
+router.put('/api/my/experiences/:id', authenticateUser('json'), (await import('./api/my/experiences/update.js')).default)
+router.delete('/api/my/experiences/:id', authenticateUser('json'), (await import('./api/my/experiences/destroy.js')).default)
+
+// API | MY EDUCATION | AUTH REQUIRED
+router.post('/api/my/educations', authenticateUser('json'), (await import('./api/my/educations/create.js')).default)
+router.get('/api/my/educations', authenticateUser('json'), (await import('./api/my/educations/index.js')).default)
+router.get('/api/my/educations/:id', authenticateUser('json'), (await import('./api/my/educations/show.js')).default)
+router.put('/api/my/educations/:id', authenticateUser('json'), (await import('./api/my/educations/update.js')).default)
+router.delete('/api/my/educations/:id', authenticateUser('json'), (await import('./api/my/educations/destroy.js')).default)
 
 export default router
