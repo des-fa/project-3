@@ -40,6 +40,7 @@ router.delete('/api/my/educations/:id', authenticateUser('json'), (await import(
 
 // API | USERS | AUTH REQUIRED
 router.get('/api/users', authenticateUser('json'), (await import('./api/users/index.js')).default)
+router.get('/api/users/:id', authenticateUser('json'), (await import('./api/users/show.js')).default)
 
 // API | NOT FOUND
 // router.use('/api', (await import('./controllers/api/not-found.js')).default)
