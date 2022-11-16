@@ -38,4 +38,10 @@ router.get('/api/my/educations/:id', authenticateUser('json'), (await import('./
 router.put('/api/my/educations/:id', authenticateUser('json'), (await import('./api/my/educations/update.js')).default)
 router.delete('/api/my/educations/:id', authenticateUser('json'), (await import('./api/my/educations/destroy.js')).default)
 
+// API | USERS | AUTH REQUIRED
+router.get('/api/users', authenticateUser('json'), (await import('./api/users/index.js')).default)
+
+// API | NOT FOUND
+// router.use('/api', (await import('./controllers/api/not-found.js')).default)
+
 export default router
