@@ -38,6 +38,15 @@ router.get('/api/my/educations/:id', authenticateUser('json'), (await import('./
 router.put('/api/my/educations/:id', authenticateUser('json'), (await import('./api/my/educations/update.js')).default)
 router.delete('/api/my/educations/:id', authenticateUser('json'), (await import('./api/my/educations/destroy.js')).default)
 
+// API | MY CONNECTIONS | AUTH REQUIRED
+router.post('/api/my/connections/following/:id', authenticateUser('json'), (await import('./api/my/connections/following/create.js')).default)
+router.delete('/api/my/connections/following/:id', authenticateUser('json'), (await import('./api/my/connections/following/destroy.js')).default)
+router.get('/api/my/connections/following', authenticateUser('json'), (await import('./api/my/connections/following/index.js')).default)
+
+router.get('/api/my/connections/following/posts', authenticateUser('json'), (await import('./api/my/connections/following/posts/index.js')).default)
+
+router.get('/api/my/connections/followers', authenticateUser('json'), (await import('./api/my/connections/followers/index.js')).default)
+
 // API | USERS | AUTH REQUIRED
 router.get('/api/users', authenticateUser('json'), (await import('./api/users/index.js')).default)
 router.get('/api/users/:id', authenticateUser('json'), (await import('./api/users/show.js')).default)
