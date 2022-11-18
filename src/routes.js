@@ -52,6 +52,6 @@ router.get('/api/users', authenticateUser('json'), (await import('./api/users/in
 router.get('/api/users/:id', authenticateUser('json'), (await import('./api/users/show.js')).default)
 
 // API | NOT FOUND
-// router.use('/api', (await import('./controllers/api/not-found.js')).default)
+router.use('/api', (await import('./api/not-found.js')).default)
 
 export default router
