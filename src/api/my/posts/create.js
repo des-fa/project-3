@@ -6,7 +6,8 @@ import uploadFileAsync from '../../../controllers/_helpers/upload-file.js'
 
 const createSchema = yup.object({
   content: yup.string().required(),
-  image: yup.mixed()
+  image: yup.mixed().transform((value) => (value || ''))
+
 })
 
 const ApiMyPostsCreate = async (req, res) => {
