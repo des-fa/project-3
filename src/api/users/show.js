@@ -25,6 +25,9 @@ const ApiUsersShow = async (req, res) => {
             createdAt: true,
             content: true,
             image: true
+          },
+          orderBy: {
+            createdAt: 'desc'
           }
         },
         experiences: {
@@ -34,6 +37,9 @@ const ApiUsersShow = async (req, res) => {
             startYear: true,
             endYear: true,
             description: true
+          },
+          orderBy: {
+            startYear: 'desc'
           }
         },
         educations: {
@@ -42,6 +48,9 @@ const ApiUsersShow = async (req, res) => {
             qualification: true,
             startYear: true,
             endYear: true
+          },
+          orderBy: {
+            startYear: 'desc'
           }
         }
       },

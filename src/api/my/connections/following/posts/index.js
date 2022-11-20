@@ -1,6 +1,5 @@
 import prisma from '../../../../../controllers/_helpers/prisma.js'
 import handleErrors from '../../../../../controllers/_helpers/handle-errors.js'
-// want to find all the people I follow and their posts
 
 const ApiMyConnectionsFollowingPostsIndex = async (req, res) => {
   try {
