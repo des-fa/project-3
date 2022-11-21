@@ -32,7 +32,7 @@ const ApiAuthSignup = async (req, res) => {
     const { body } = req
     const verifiedData = await signupSchema.validate(body, { abortEarly: false, stripUnknown: true })
 
-    uploadFileAsync(verifiedData, req)
+    await uploadFileAsync(verifiedData, req)
 
     const dataToSave = {
       email: verifiedData.email,

@@ -20,14 +20,16 @@ const parseData = (req, res, next) => {
         if (files[key].size > 0) {
           _.set(req.body, key, files[key])
         } else {
+          console.log('unlink in line 23')
           fs.unlinkSync(files[key].filepath)
           delete req.files[key]
         }
       })
 
       // cleans up tmp folder when the request is done
-      req.on('end', () => {
+      req.on('close', () => {
         Object.keys(files).forEach((key) => {
+          console.log('unlink in line 32')
           fs.unlinkSync(files[key].filepath)
         })
       })

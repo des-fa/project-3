@@ -3,7 +3,7 @@ import handleErrors from '../../controllers/_helpers/handle-errors.js'
 
 const ApiUsersShow = async (req, res) => {
   try {
-    const { params: { id } } = req
+    const { params: { id }, session: { user: { id: currentUserId } = {} } = {} } = req
 
     const foundUser = await prisma.user.findUnique({
       where: {
@@ -52,7 +52,21 @@ const ApiUsersShow = async (req, res) => {
           orderBy: {
             startYear: 'desc'
           }
-        }
+        },
+        ...(currentUserId ? {
+          followedBy: {
+            where: {
+              followerId: currentUserId
+            }
+          }
+        } : {}),
+        ...(currentUserId ? {
+          following: {
+            where: {
+              followingId: currentUserId
+            }
+          }
+        } : {})
       },
       rejectOnNotFound: true })
     return res.status(200).json(foundUser)
