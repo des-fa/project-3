@@ -6,7 +6,7 @@ const ApiMyPostsIndex = async (req, res) => {
     const { session: { user: { id: userId } } } = req
 
     // Pagination
-    const take = 5
+    const take = 4
     const page = Number(req.query.page || '1')
     const skip = (page - 1) * take
 
