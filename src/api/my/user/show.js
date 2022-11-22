@@ -7,7 +7,15 @@ const ApiMyUserShow = async (req, res) => {
   try {
     const { session: { user: { id } } } = req
 
-    const foundUser = await prisma.user.findUnique({ where: { id: Number(id) }, rejectOnNotFound: true })
+    const foundUser = await prisma.user.findUnique({
+      where: {
+        id: Number(id)
+      },
+      include: {
+        profile: true
+      },
+      rejectOnNotFound: true
+    })
     return res.status(200).json(_.omit(foundUser, ['passwordHash']))
   } catch (err) {
     return handleErrors(res, err)

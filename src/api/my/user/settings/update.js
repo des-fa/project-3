@@ -18,7 +18,12 @@ const updateSchema = yup.object({
       }
     }
   }),
-  fullName: yup.string().min(2, 'Minimum 2 characters').max(15, 'Maximum 15 characters'),
+  fullName: yup.string()
+    .matches(/.{5,15}/, {
+      excludeEmptyString: true,
+      message: 'Must be between 5 to 15 characters'
+    }),
+  // .min(2, 'Minimum 2 characters').max(15, 'Maximum 15 characters'),
   password: yup.string().test(
     'empty-or-6-characters-check',
     'Password must be at least 6 characters',
