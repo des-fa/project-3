@@ -8,7 +8,7 @@ const ApiUsersIndex = async (req, res) => {
     const q = req.query.q || ''
 
     // Pagination
-    const take = 10
+    const take = 5
     const page = Number(req.query.page || '1')
     const skip = (page - 1) * take
 
