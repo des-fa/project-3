@@ -11,6 +11,7 @@ const ApiUsersShow = async (req, res) => {
       },
       select: {
         id: true,
+        email: true,
         fullName: true,
         avatar: true,
         profile: {

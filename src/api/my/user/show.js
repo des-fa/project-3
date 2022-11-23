@@ -12,7 +12,8 @@ const ApiMyUserShow = async (req, res) => {
         id: Number(id)
       },
       include: {
-        profile: true
+        profile: true,
+        following: true
       },
       rejectOnNotFound: true
     })
