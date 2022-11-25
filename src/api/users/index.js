@@ -34,6 +34,14 @@ const ApiUsersIndex = async (req, res) => {
 
           }
         }, {
+          profile: {
+            highestEducation: {
+              contains: q,
+              mode: 'insensitive'
+            }
+
+          }
+        }, {
           experiences: {
             some: {
               job: {
