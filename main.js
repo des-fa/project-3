@@ -28,12 +28,14 @@ app.use(ironSession({
 
 app.use(cors({
   origin: (origin, callback) => {
+    if (!origin) return callback(null, true)
+
     const whitelist = process.env.CORS_ORIGIN ? process.env.CORS_ORIGIN.split(',').map((o) => o.trim()) : []
     if (whitelist.indexOf(origin) !== -1 || !origin) {
-      callback(null, true)
-    } else {
-      callback(new Error('Not allowed by CORS'))
+      return callback(null, true)
     }
+
+    return callback(new Error('Not allowed by CORS'))
   },
   credentials: true
 }))
